@@ -1,0 +1,70 @@
+.section{
+	padding: 20px;
+	display: inline-block;
+	vertical-align: top;
+	width: 45%;
+
+
+}
+
+.logout{
+	margin-left: 90%
+}
+
+.add h5{
+	width: 150px
+
+}
+.addbook{
+	margin-left: 35%;
+	padding: 100px;
+
+}
+.allbooks{
+	padding: 50px;
+	background-color: #E6EAE9;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.favs{
+	padding: 50px;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.fav{
+	display: inline-block;
+	color: black;
+	margin: 50px;
+}
+
+.entry h5{
+	margin: 10px 0px;
+	
+	
+}
+.entry a{
+	display: inline-block;
+	color: black;
+	
+	
+}
+.entry{
+	margin: 100px;
+	display: inline-block;
+
+}
+
+.jumbotron{
+	min-height: 500px;
+	background-image: url("/static/books_header.jpg");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.jumbotron h3{
+	color: gray;
+}

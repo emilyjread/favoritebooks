@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<div>
+		<div class="jumbotron"> <a class=" logout button btn btn-primary" href="/logout">Logout</a> 
+			<h1>Hello {{user[0]['username']}},</h1>
+			<h1> Welcome to your library! </h1>
+		</div>
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+							<p style="background-color: pink" class="text-center"> {{message}} </p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+		<div class="addbook">
+			<h1>Add a favorite book </h1>
+			<form action="/addbook" method="POST">
+				<div class="add title">
+					<h5>Title:<input type="text" name="title"></h5>
+				</div>
+				<div class="add description">
+					<h5>Description:<textarea name="desc"></textarea>
+				</div>
+
+				<input class= "btn btn-primary" type="submit" name="add" value= "add">
+			</form>
+		</div>
+		<div class="allbooks">
+			<h1>All books</h1>
+			{%for book in books%}
+				<div class="entry">
+					<h2><a class= "title" href="/books/{{book['id']}}">{{book['title']}}</a></h2>
+					<h4>{{book['description']}}</h4>
+					<h6>added by{{book['username']}}</h6>
+						{%if book['books_id']==book['id']%}
+						<p>This is a favorite</p>
+			
+					{%else%}
+						<form action="/addfavorite/{{book['id']}}" method="POST">
+							<input type="hidden" name="favorite">
+							<input class= "btn btn-primary" type="submit" name="submit" value="Add to favorite">
+						</form>
+					{%endif%}
+				
+				</div>
+			
+				
+			{%endfor%}
+		</div>
+		<div class="favs">
+			<h3>Your favorites</h3>
+			{%for fav in favorites%}
+			<div class="fav">
+				<h2> {{fav['title']}}</h2>
+				<h4>{{fav['description']}}</h4>
+				<h6>Added by: {{fav['username']}}</h6>
+
+			<a class="delete btn btn-outline-primary" href="/removefav/{{fav['books_id']}}">Remove from favorites</a>
+		</div>
+			{%endfor%}
+		</div>
+		
+	</div>
+	
+
+	
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Book</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	
+		{%for book in books%}
+		<div class="jumbotron"><h1>{{book['title']}} info</h1><a  class= " logout btn btn-primary" href="/wall">Go home</a></div>
+		<div class="addbook">
+			
+			<h2>Title: <em>{{book['title']}}</em></h2>
+			<h2>added by: <em>{{book['username']}}</em></h2>
+			<h2>added on: <em>{{book['created_at']}}</em></h2>
+			<h2>description: <em>{{book['description']}}</em></h2>
+			<form action="/addfavorite/{{book['id']}}" method= "POST">
+				<input type="hidden" name="hidden">
+				<input class="btn btn-primary" type="submit" name="submit" value="add to favorites">
+				
+			</form>
+	 
+			{%endfor%}
+		</div>
+		<div class="section">
+			<h4>users who like this book</h4>
+			<ul>
+			{%for fan in fans%}
+			<li class="fans"><h5>{{fan['fname']}} {{fan['lname']}}</h5></li>
+			{%endfor%}
+		</ul>
+
+
+		</div>
+	
+
+
+
+</body>
+</html>
